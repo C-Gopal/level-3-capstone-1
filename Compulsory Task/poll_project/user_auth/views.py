@@ -29,5 +29,6 @@ def show_user(request):
         'password': request.user.password,
     })
 
+# the signup page is not functional but once the fields are filled out, the signup button works
 def signup(request):
     return render(request, "registration/signup.html")
