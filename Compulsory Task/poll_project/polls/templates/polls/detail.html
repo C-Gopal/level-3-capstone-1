@@ -1,0 +1,44 @@
+{% extends "welcome.html" %}
+
+{% block image_1 %}
+{% endblock %}
+
+{% block image_2 %}
+{% endblock %}
+
+{% block heading %}
+<h1 style="text-align: justify; font-size: 38px; margin-top: 75px; font-weight: bold;">{{ question.question_text }}</h1>
+{% endblock %}
+
+{% block content %}
+
+{% if error_message %}
+<p style="margin-inline-start: 545px; font-size: 33px; position: fixed; font-weight: bold; margin-top: 20px; margin-bottom: 30px; color: rgb(54, 245, 245); font-style: italic;"><strong>{{ error_message }}</strong></p>
+{% endif %} 
+
+<form action="{% url 'polls:vote' question.id %}" method="post" 
+style="margin-inline-start: 660px; font-size: 30px; margin-top: 70px;">
+    {% csrf_token %}
+
+    {% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice {{
+        forloop.counter
+    }}" value="{{ choice.id }}"
+    style="margin-top: 15px; margin-bottom: 15px;"/>
+    <label for="choice {{ forloop.counter }}">
+        {{choice.choice_text}}
+    </label>
+    <br>
+    {% endfor %}
+    
+    {% if user.is_authenticated %}
+        <input type="submit" value="Vote" style=" color: rgb(255, 237, 173); margin-inline-start: 20px; font-size: 25px; margin-top: 25px; background-color: rgba(230, 172, 96, 0.75); border-radius: 10px; border: 3px solid rgba(255, 237, 173, 0.45);">
+    {% else %}
+        <h4 style="margin-top: 40px; font-size: 35px; font-weight: bold; font-style: italic;">Log in or Sign up to vote</h4>
+        <a href="{% url 'user_auth:login' %}"><h5 style="font-size: 30px; position: fixed; margin-top: 15px; background-color: rgba(230, 172, 96, 0.75); border-radius: 10px; border: 3px solid rgba(255, 237, 173, 0.45);">Log in</h5></a>
+        <a href="{% url 'user_auth:signup' %}"><h5 style="font-size: 30px; position: fixed; margin-top: 65px; background-color: rgba(230, 172, 96, 0.75); border-radius: 10px; border: 3px solid rgba(255, 237, 173, 0.45)">Sign up</h5></a>
+    {% endif %}
+</form>
+
+<a href="{% url 'polls:polls' %}"><h5 style="margin-top: 150px; margin-inline-start: 660px; font-size: 23px; position: fixed; font-weight: bold;  background-color: rgba(230, 172, 96, 0.75); border-radius: 10px; border: 3px solid rgba(255, 237, 173, 0.6)">Back to Polls</h5></a>
+{% endblock %} 

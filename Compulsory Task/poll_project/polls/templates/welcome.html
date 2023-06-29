@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Soccer Polls</title>
+
+        <link rel="stylesheet" href="{% static 'style.css' %}"> 
+
+        <link rel="icon" href="{% static 'style_assets/ball.png' %}">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="row">
+                <div class="col-md-2">
+                    {% block image_1 %}
+                    <img id="trophy" src="{% static 'style_assets/world-cup.png' %}">
+                    {% endblock %}
+                </div>
+                
+                <div class="col-md-8">
+                    {% block heading %}
+                    <h1 style="margin-inline-start: 58px; text-align: center; font-size: 80px; padding-top: 50px; margin-top: 20px; margin-bottom: 20px;">
+                        Welcome to the Soccer Polls</h1>
+                    {% endblock %}
+                </div>
+
+                <div class="col-md-2">
+                    {% block image_2 %}
+                    <img id="champ" src="{% static 'style_assets/championship.png' %}">
+                    {% endblock %}
+                </div>
+            </div>
+
+            {% block content %}
+            <div class="row">
+                <h2 style="text-align: center; font-size: 60px; margin-inline-start: 35px; margin-top: 50px; margin-bottom: 50px;">Log in/Sign up to cast your vote</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="{% url 'user_auth:login' %}"><h5 style="margin-inline-start: 590px; font-size: 39px; position: fixed; margin-top: 60px; background-color: rgba(230, 172, 96, 0.75); border-radius: 10px; border: 3px solid rgba(255, 237, 173, 0.45);">Log in</h5></a>
+                </div>
+
+                <div class="col-md-6">
+                    <a href="{% url 'user_auth:signup' %}"><h5 style="margin-inline-start: 60px; font-size: 38px; position: fixed; margin-top: 60px; background-color: rgba(230, 172, 96, 0.75); border-radius: 10px; border: 3px solid rgba(255, 237, 173, 0.45);">Sign up</h5></a>
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+    </body>
+</html>

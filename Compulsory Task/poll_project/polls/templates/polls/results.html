@@ -1,0 +1,28 @@
+{% extends "welcome.html" %}
+
+{% block image_1 %}
+{% endblock %}
+
+{% block image_2 %}
+{% endblock %}
+
+{% block heading %}
+<h1 style="text-align: justify; font-size: 38px; margin-top: 75px; font-weight: bold;">{{ question.question_text }}</h1>
+{% endblock %}
+
+{% block content %}
+<ul style="margin-inline-start: 500px; font-size: 40px; margin-top: 45px;">
+    {% for choice in question.choice_set.all %}
+    <li>
+        {{ choice.choice_text }} ---- {{ choice.votes }}
+        vote{{choice.votes|pluralize}}
+    </li>
+    {% endfor %}
+</ul>
+
+
+<a href="{% url 'polls:detail' question.id %}"
+style="margin-top: 50px; margin-inline-start: 660px; font-size: 28px; position: fixed; font-weight: bold; background-color: rgba(230, 172, 96, 0.75); border-radius: 10px; border: 3px solid rgba(255, 237, 173, 0.45)">
+Vote again?
+</a>
+{% endblock %}

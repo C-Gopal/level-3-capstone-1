@@ -1,0 +1,23 @@
+{% extends "welcome.html" %}
+
+{% block heading %}
+<h1 style="text-align: center; margin-inline-start: 120px; font-size: 50px; margin-top: 85px; margin-right: 123px;">Click on a question to cast your vote:</h1>
+{% endblock %}
+
+{% block content %}
+{% if latest_question_list %}
+<ul style="margin-inline-start: 180px; font-size: 30px; font-weight: bold;">
+    {% for question in latest_question_list %}
+    <li style="margin-top: 50px; margin-bottom: 15px;">
+        <a href="{% url 'polls:detail' question.id %}">
+            {{ question.question_text }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No polls are available</p>
+{% endif %} 
+
+<a href="{% url 'polls:index' %}"><h5 style="margin-top: 35px; position: fixed; margin-inline-start: 670px; font-size: 28px; background-color: rgba(230, 172, 96, 0.75); border-radius: 10px; border: 3px solid rgba(255, 237, 173, 0.45)">Home</h5></a>
+{% endblock %}
