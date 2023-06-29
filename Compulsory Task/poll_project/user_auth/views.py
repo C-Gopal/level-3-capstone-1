@@ -5,9 +5,11 @@ from django.urls import reverse
 
 # Create your views here.
 def user_login(request):
+    """Login page for access to polls"""
     return render(request, 'authentication/login.html')
 
 def authenticate_user(request):
+    """Confirms or denies user's access to polls"""
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(username = username, password = password)
@@ -23,6 +25,7 @@ def authenticate_user(request):
         )
 
 def show_user(request):
+    """Function for testing authentication"""
     print(request.user.username)
     return render(request, 'authentication/user.html', {
         'username': request.user.username,
@@ -31,4 +34,5 @@ def show_user(request):
 
 # the signup page is not functional but once the fields are filled out, the signup button works
 def signup(request):
+    """Requests signup for access to polls (does not have database functionality)"""
     return render(request, "registration/signup.html")
