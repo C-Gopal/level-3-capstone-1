@@ -16,3 +16,5 @@ django_venv/
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+a.txt
