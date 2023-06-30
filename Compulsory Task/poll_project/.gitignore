@@ -17,4 +17,6 @@ django_venv/
 !.vscode/extensions.json 
 .history
 
-a.txt
+*.txt
+
+*.png
